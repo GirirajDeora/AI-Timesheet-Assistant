@@ -114,15 +114,7 @@ The application connects to your Google Sheet to log entries directly.
 
 To verify that the application operates according to specifications, you can test this exact prompt:
 
-> *"Today I worked on MV-703 for about two hours doing VPD analysis. Then I spent one hour on MV-356 handling Q Plus QA queries. I also attended Scrum for 15 minutes. I used ChatGPT while preparing the analysis."*
-
-### Result:
-
-| # | Date | Task Type | Task | Time (hrs) | Zoho ID | Requirement ID | Requirement Title | Gen AI |
-| :-: | :--- | :--- | :--- | :---: | :---: | :---: | :--- | :---: |
-| 1 | Today | Project Analysis | VPD analysis | 2 | MV-703 | R26-04-018 | OTG PP bags enhancement (Phase 2) | Yes |
-| 2 | Today | QA Queries | Q Plus Tech Upgrade | 1 | MV-356 | R26-04-019 | Q Plus Tech Upgrade | No |
-| 3 | Today | Scrum | | 0.25 | | | | No |
+> *"Today I worked on Project-703 for about two hours doing VPD analysis. Then I spent one hour on Project-356 handling QA queries. I also attended Scrum for 15 minutes. I used ChatGPT while preparing the analysis."*
 
 **Total Logged:** `3.25 hours`.
 
