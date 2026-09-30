@@ -777,25 +777,20 @@ const App = {
     const aiText = document.getElementById("status-ai-text");
 
     if (sheetsDot && sheetsText) {
-      if (this.config.appsScriptUrl) {
-        sheetsDot.className = "status-dot connected";
-        sheetsText.textContent = "Google Sheets: Connected ✓";
-      } else {
-        sheetsDot.className = "status-dot connected";
-        sheetsText.textContent = "Google Sheets: Ready ✓";
-      }
+      sheetsDot.className = "status-dot connected";
+      sheetsText.textContent = this.config.appsScriptUrl ? "Sheets Connected" : "Sheets Ready";
     }
 
     if (aiDot && aiText) {
       aiDot.className = "status-dot connected";
-      aiText.textContent = "AI: Google Gemini Ready ✓";
+      aiText.textContent = "Gemini Ready";
     }
   },
 
   updateStatusBarWithHours(hours) {
     const el = document.getElementById("status-today-hours");
     if (el) {
-      el.textContent = `Today: ${hours} hrs logged`;
+      el.textContent = `${hours}h logged today`;
     }
   },
 

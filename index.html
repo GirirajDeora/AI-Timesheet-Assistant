@@ -27,20 +27,18 @@
       </div>
     </header>
 
-    <!-- Connection & Status Bar -->
+    <!-- Connection & Status Chips -->
     <div class="status-bar" id="app-status-bar">
-      <div class="status-indicator">
+      <div class="status-chip">
         <span class="status-dot connected" id="status-sheets-dot"></span>
-        <span id="status-sheets-text">Google Sheets: Ready</span>
+        <span id="status-sheets-text">Sheets: Connected</span>
       </div>
-      <span style="color: var(--border-strong);">•</span>
-      <div class="status-indicator">
+      <div class="status-chip">
         <span class="status-dot connected" id="status-ai-dot"></span>
-        <span id="status-ai-text">AI: Ready</span>
+        <span id="status-ai-text">Gemini: Ready</span>
       </div>
-      <span style="color: var(--border-strong);">•</span>
-      <div class="status-indicator" id="status-today-hours" style="font-weight: 600; color: var(--brand-primary);">
-        Today: 0.0 hrs logged
+      <div class="status-chip status-chip-accent" id="status-today-chip">
+        <span id="status-today-hours">0.0h logged today</span>
       </div>
     </div>
 
