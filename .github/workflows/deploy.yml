@@ -32,6 +32,9 @@ jobs:
           if [ -n "${{ secrets.GEMINI_API_KEY }}" ]; then
             sed -i "s|aiApiKey: \".*\"|aiApiKey: \"${{ secrets.GEMINI_API_KEY }}\"|g" js/config.js
           fi
+          if [ -n "${{ secrets.GEMINI_MODEL }}" ]; then
+            sed -i "s|aiModel: \".*\"|aiModel: \"${{ secrets.GEMINI_MODEL }}\"|g" js/config.js
+          fi
           if [ -n "${{ secrets.APPS_SCRIPT_URL }}" ]; then
             sed -i "s|appsScriptUrl: \".*\"|appsScriptUrl: \"${{ secrets.APPS_SCRIPT_URL }}\"|g" js/config.js
           fi
