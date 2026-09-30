@@ -138,22 +138,6 @@ const App = {
       addRowBtn.addEventListener("click", () => this.addNewRow());
     }
 
-    // Settings Modal
-    const openSettingsBtn = document.getElementById("btn-open-settings");
-    const closeSettingsBtn = document.getElementById("btn-close-settings");
-    const settingsModal = document.getElementById("modal-settings");
-    const settingsForm = document.getElementById("settings-form");
-
-    if (openSettingsBtn && settingsModal) {
-      openSettingsBtn.addEventListener("click", () => this.openSettingsModal());
-    }
-    if (closeSettingsBtn && settingsModal) {
-      closeSettingsBtn.addEventListener("click", () => this.closeSettingsModal());
-    }
-    if (settingsForm) {
-      settingsForm.addEventListener("submit", (e) => this.handleSaveSettings(e));
-    }
-
     // Today's entries modal
     const viewTodayBtn = document.getElementById("btn-view-today");
     const closeTodayBtn = document.getElementById("btn-close-today-modal");
@@ -669,8 +653,8 @@ const App = {
         sheetsDot.className = "status-dot connected";
         sheetsText.textContent = "Google Sheets: Connected ✓";
       } else {
-        sheetsDot.className = "status-dot warning";
-        sheetsText.textContent = "Google Sheets: Ready to connect (Settings)";
+        sheetsDot.className = "status-dot connected";
+        sheetsText.textContent = "Google Sheets: Ready ✓";
       }
     }
 

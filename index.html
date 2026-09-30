@@ -24,7 +24,6 @@
       
       <div class="header-actions">
         <button id="btn-toggle-theme" class="btn-icon" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">🌓</button>
-        <button id="btn-open-settings" class="btn-icon" title="Settings & Configuration" aria-label="Settings">⚙️</button>
       </div>
     </header>
 
@@ -189,46 +188,7 @@
 
   </div>
 
-  <!-- Settings Modal Dialog -->
-  <div id="modal-settings" class="modal-overlay">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Configuration & Settings</h3>
-        <button id="btn-close-settings" class="btn-icon" type="button">✕</button>
-      </div>
 
-      <form id="settings-form">
-        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-          <!-- Google Sheets Configuration -->
-          <div class="form-group">
-            <label for="setting-spreadsheet-id">Google Spreadsheet ID</label>
-            <input type="text" id="setting-spreadsheet-id" class="form-control" 
-              value="1Z1UCvEUKEiVwqbnhsVFuSBakf0QlpNocZnvcH70wC_c" readonly style="background: var(--bg-subtle);">
-            <span class="form-help">Configured Timesheet Spreadsheet ID</span>
-          </div>
-
-          <div class="form-group">
-            <label for="setting-apps-script-url">Google Apps Script Web App URL</label>
-            <input type="url" id="setting-apps-script-url" class="form-control" 
-              placeholder="https://script.google.com/macros/s/AKfycb.../exec">
-            <span class="form-help">Deployed Apps Script Web App URL from your sheet (Access: Anyone).</span>
-          </div>
-
-          <div>
-            <button id="btn-test-connection" class="btn btn-secondary btn-sm" type="button">
-              🔌 Test Connection & Sync Masters
-            </button>
-          </div>
-        </div>
-
-        <!-- Modal Footer Actions -->
-        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
-          <button type="button" class="btn btn-secondary" onclick="App.closeSettingsModal()">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Settings</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- Today's Entries Modal Dialog -->
   <div id="modal-today" class="modal-overlay">
