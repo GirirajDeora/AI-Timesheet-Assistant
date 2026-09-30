@@ -4,7 +4,7 @@
 
 An intelligent, production-ready personal productivity web application that allows you to log your daily work naturally via **voice or text**, automatically extracts structured timesheet rows, maps project IDs from your **Requirement Master**, and appends the records directly to your **Google Sheet**.
 
-Pre-configured to work directly with **Giriraj Deora - Product Timesheet** and designed for zero-cost static hosting (e.g., **GitHub Pages**) with a secure **Google Apps Script** backend bridge.
+Designed for zero-cost static hosting (e.g., **GitHub Pages**) with a secure **Google Apps Script** backend bridge.
 
 ---
 
@@ -14,7 +14,7 @@ Pre-configured to work directly with **Giriraj Deora - Product Timesheet** and d
 * ⌨️ **Natural Text Input**: Type in plain conversational English if you prefer not to speak or are in a quiet room.
 * 🧠 **Google Gemini Flash Engine**: Pre-configured at the code level (`gemini-1.5-flash`) for fast, accurate understanding. Also includes a built-in smart parser that runs 100% in-browser.
 * 📋 **Multi-Activity Extraction**: Understands multiple tasks from a single prompt (e.g. *"Worked 2 hours on MV-703, 1 hour on MV-356 QA queries, and 15 mins Scrum"*).
-* 🔍 **Requirement Master Lookup**: Pre-loaded with your 38 project requirements (matching Zoho IDs like `MV-703`, `MV-722`, `MV-356` to Requirement IDs like `R26-04-018` and official titles).
+* 🔍 **Requirement Master Lookup**: Automatically matches Zoho IDs or project keywords to Requirement IDs and official requirement titles without hallucinations.
 * ⏱️ **Decimal Time Conversion**: Seamlessly converts *"15 minutes"* to `0.25`, *"30 minutes"* to `0.5`, *"2 hours"* to `2`, *"two and a half hours"* to `2.5`.
 * 🤖 **Gen AI Usage Detection**: Detects mentions of tools like ChatGPT, Claude, or Copilot and sets `Gen AI Usage` to `Yes`.
 * 🛡️ **Duplicate Entry Protection**: Warns you if an identical or similar entry was already submitted today before writing to the sheet.
@@ -76,11 +76,11 @@ You can run the application immediately on your computer:
 
 ## 📊 Google Sheets Connection Setup
 
-The application connects to your Google Sheet: **Giriraj Deora - Product Timesheet** (`1Z1UCvEUKEiVwqbnhsVFuSBakf0QlpNocZnvcH70wC_c`).
+The application connects to your Google Sheet to log entries directly.
 
 ### Deploy Google Apps Script (5-Minute Backend Setup)
 
-1. Open your [Google Sheet](https://docs.google.com/spreadsheets/d/1Z1UCvEUKEiVwqbnhsVFuSBakf0QlpNocZnvcH70wC_c/edit).
+1. Open your target Google Sheet.
 2. Click **Extensions** in the top menu → **Apps Script**.
 3. Delete any boilerplate code in `Code.gs`.
 4. Copy the entire contents of [`apps-script/Code.gs`](apps-script/Code.gs) from this repository and paste it into the Apps Script editor.
@@ -90,7 +90,7 @@ The application connects to your Google Sheet: **Giriraj Deora - Product Timeshe
    * Click the gear icon (⚙️) next to *Select type* → choose **Web app**.
    * **Description**: `AI Timesheet Web App v1`
    * **Execute as**: **Me**
-   * **Who has access**: **Anyone** *(Important: Allows your GitHub Pages site to send timesheet entries)*
+   * **Who has access**: **Anyone** *(Important: Allows your web app to send timesheet entries)*
 8. Click **Deploy**, authorize permissions, and copy the **Web App URL** (ends in `/exec`).
 9. Open your web app, click **Settings (⚙️)**, paste your Web App URL, and click **🔌 Test Connection & Sync Masters**.
 
@@ -106,8 +106,7 @@ The application connects to your Google Sheet: **Giriraj Deora - Product Timeshe
    * Go to **Settings** → **Pages** (on the left menu).
    * Under **Build and deployment** > **Source**, choose **Deploy from a branch**.
    * Under **Branch**, select `main` and folder `/ (root)`, then click **Save**.
-3. In 1–2 minutes, your website is live at:
-   `https://GirirajDeora.github.io/AI-Timesheet-Assistant/`
+3. In 1–2 minutes, your website is live and ready for mobile and desktop use.
 
 ---
 

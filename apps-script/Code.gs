@@ -19,7 +19,7 @@
 // CONFIGURATION
 // ==========================================
 var CONFIG = {
-  // Configured with Giriraj Deora's Product Timesheet ID:
+  // Configured with target Timesheet ID:
   SPREADSHEET_ID: "1Z1UCvEUKEiVwqbnhsVFuSBakf0QlpNocZnvcH70wC_c", 
   
   SHEET_NAMES: {

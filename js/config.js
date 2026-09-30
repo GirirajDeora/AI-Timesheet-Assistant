@@ -1,7 +1,6 @@
 /**
  * =========================================================================
  * AI Timesheet Assistant - Central Configuration & State Storage
- * Pre-configured with Giriraj Deora's Product Timesheet
  * =========================================================================
  */
 
@@ -9,7 +8,7 @@ const DEFAULT_CONFIG = {
   // Google Sheets & Apps Script Integration
   appsScriptUrl: "",
   spreadsheetId: "1Z1UCvEUKEiVwqbnhsVFuSBakf0QlpNocZnvcH70wC_c",
-  spreadsheetTitle: "Giriraj Deora - Product Timesheet",
+  spreadsheetTitle: "Connected Timesheet",
   timesheetSheetName: "Timesheet",
   requirementMasterSheetName: "Requirement Master",
   taskTypeMasterSheetName: "Task Type Master",
@@ -28,7 +27,7 @@ const DEFAULT_CONFIG = {
   theme: "light",
   duplicateProtection: true,
 
-  // Requirement Master populated directly from Giriraj's Product Timesheet
+  // Requirement Master project mappings
   requirementMaster: [
     {
       "zohoId": "MV-703",
@@ -207,7 +206,7 @@ const DEFAULT_CONFIG = {
     }
   ],
 
-  // Task Type Master matching Giriraj's actual timesheet vocabulary
+  // Task Type Master
   taskTypeMaster: [
     "Project Analysis",
     "QA Queries",
