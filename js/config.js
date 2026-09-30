@@ -24,7 +24,7 @@ const DEFAULT_CONFIG = {
   defaultGenAiValue: "No",
   confirmBeforeSubmit: true,
   voiceEnabled: true,
-  theme: "light",
+  theme: "dark",
   duplicateProtection: true,
 
   // Requirement Master project mappings

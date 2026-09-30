@@ -63,32 +63,32 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #0b0f19;
-  --bg-surface: #111827;
-  --bg-surface-glass: rgba(17, 24, 39, 0.8);
-  --bg-surface-elevated: #1f2937;
-  --bg-subtle: #1e293b;
-  --border-subtle: #334155;
-  --border-strong: #475569;
+  --bg-primary: #0B0B0B;
+  --bg-surface: #141414;
+  --bg-surface-glass: rgba(20, 20, 20, 0.82);
+  --bg-surface-elevated: #1e1e1e;
+  --bg-subtle: #191919;
+  --border-subtle: #262626;
+  --border-strong: #383838;
 
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
-  --text-inverse: #0b0f19;
+  --text-muted: #737373;
+  --text-inverse: #0B0B0B;
 
   --brand-primary: #6366f1;
   --brand-primary-hover: #4f46e5;
   --brand-primary-subtle: rgba(99, 102, 241, 0.18);
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
 
   /* Apple Translucent Materials (Dark Mode) */
-  --material-bg: rgba(17, 24, 39, 0.78);
-  --material-border: rgba(255, 255, 255, 0.12);
-  --material-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  --material-bg: rgba(20, 20, 20, 0.82);
+  --material-border: rgba(255, 255, 255, 0.1);
+  --material-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
   --material-blur: blur(20px) saturate(190%);
 }
 

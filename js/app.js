@@ -53,7 +53,7 @@ const App = {
    */
   async init() {
     this.config = window.ConfigManager ? window.ConfigManager.load() : {};
-    this.applyTheme(this.config.theme || "light");
+    this.applyTheme(this.config.theme || "dark");
     this.setupVoice();
     this.bindEvents();
     this.updateStatusBadges();
@@ -62,13 +62,25 @@ const App = {
   },
 
   /**
-   * Apply UI theme (light / dark)
+   * Apply UI theme (light / dark) and update Sun/Moon icon
    */
   applyTheme(theme) {
-    if (theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    const isDark = (theme === "dark" || !theme || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches));
+    const themeBtn = document.getElementById("btn-toggle-theme");
+    if (isDark) {
       document.documentElement.setAttribute("data-theme", "dark");
+      if (themeBtn) {
+        themeBtn.textContent = "☀️";
+        themeBtn.title = "Switch to Light Mode";
+        themeBtn.setAttribute("aria-label", "Switch to Light Mode");
+      }
     } else {
       document.documentElement.removeAttribute("data-theme");
+      if (themeBtn) {
+        themeBtn.textContent = "🌙";
+        themeBtn.title = "Switch to Dark Mode";
+        themeBtn.setAttribute("aria-label", "Switch to Dark Mode");
+      }
     }
   },
 
@@ -215,7 +227,8 @@ const App = {
     if (themeBtn) {
       themeBtn.addEventListener("click", () => {
         Haptics.tap();
-        const nextTheme = (this.config.theme === "dark") ? "light" : "dark";
+        const currentIsDark = document.documentElement.getAttribute("data-theme") === "dark";
+        const nextTheme = currentIsDark ? "light" : "dark";
         this.config.theme = nextTheme;
         window.ConfigManager.save(this.config);
         this.applyTheme(nextTheme);
