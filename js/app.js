@@ -284,69 +284,120 @@ const App = {
   renderPreviewTable(entries, totalHours) {
     const previewSection = document.getElementById("preview-section");
     const tbody = document.getElementById("preview-table-body");
+    const cardsContainer = document.getElementById("preview-cards-container");
     const totalBanner = document.getElementById("preview-total-banner");
     const confirmPrompt = document.getElementById("confirmation-prompt-text");
 
-    if (!tbody || !previewSection) return;
+    if (!previewSection) return;
 
-    tbody.innerHTML = "";
+    if (tbody) tbody.innerHTML = "";
+    if (cardsContainer) cardsContainer.innerHTML = "";
     let calculatedTotal = 0;
 
     entries.forEach((entry, index) => {
       const timeVal = parseFloat(entry.timeHours || 0);
       calculatedTotal += timeVal;
 
-      const tr = document.createElement("tr");
-      tr.id = `row-${entry.id || index}`;
-
       // Build task type options
       const taskTypeOptions = (this.config.taskTypeMaster || [])
         .map(t => `<option value="${t}" ${t === entry.taskType ? 'selected' : ''}>${t}</option>`)
         .join("");
 
-      tr.innerHTML = `
-        <td>
-          <input type="text" class="table-input" value="${entry.date || ''}" 
-            onchange="App.updateEntryField(${index}, 'date', this.value)" style="width: 100px;">
-        </td>
-        <td>
-          <select class="table-input" onchange="App.updateEntryField(${index}, 'taskType', this.value)">
-            ${taskTypeOptions}
-          </select>
-        </td>
-        <td>
-          <input type="text" class="table-input" value="${entry.task || ''}" placeholder="Task description"
-            onchange="App.updateEntryField(${index}, 'task', this.value)">
-        </td>
-        <td>
-          <input type="number" step="0.25" min="0" class="table-input num" value="${timeVal}" 
-            onchange="App.updateEntryField(${index}, 'timeHours', parseFloat(this.value) || 0)">
-        </td>
-        <td>
-          <input type="text" class="table-input" value="${entry.zohoId || ''}" placeholder="Zoho ID"
-            onchange="App.updateEntryField(${index}, 'zohoId', this.value)" style="width: 85px;">
-        </td>
-        <td>
-          <input type="text" class="table-input" value="${entry.requirementId || ''}" placeholder="Req ID"
-            onchange="App.updateEntryField(${index}, 'requirementId', this.value)" style="width: 100px;">
-        </td>
-        <td>
-          <input type="text" class="table-input" value="${entry.requirementTitle || ''}" placeholder="Requirement Title"
-            onchange="App.updateEntryField(${index}, 'requirementTitle', this.value)">
-        </td>
-        <td>
-          <select class="table-input" onchange="App.updateEntryField(${index}, 'genAIUsage', this.value)" style="width: 70px;">
-            <option value="No" ${entry.genAIUsage === 'No' ? 'selected' : ''}>No</option>
-            <option value="Yes" ${entry.genAIUsage === 'Yes' ? 'selected' : ''}>Yes</option>
-          </select>
-        </td>
-        <td style="text-align: center;">
-          <button type="button" class="btn-icon btn-danger-outline" title="Delete row" 
-            onclick="App.deleteRow(${index})">✕</button>
-        </td>
-      `;
+      // 1. Mobile-First Card View (Displayed on Mobile Screens)
+      if (cardsContainer) {
+        const card = document.createElement("div");
+        card.className = "mobile-entry-card";
+        card.id = `card-${entry.id || index}`;
 
-      tbody.appendChild(tr);
+        card.innerHTML = `
+          <div class="card-top-row">
+            <div class="card-type-wrapper">
+              <select class="mobile-input mobile-select" onchange="App.updateEntryField(${index}, 'taskType', this.value)">
+                ${taskTypeOptions}
+              </select>
+            </div>
+            <div class="card-time-wrapper">
+              <input type="number" step="0.25" min="0" class="mobile-input mobile-time" value="${timeVal}"
+                onchange="App.updateEntryField(${index}, 'timeHours', parseFloat(this.value) || 0)">
+              <span class="time-unit">hrs</span>
+            </div>
+            <button type="button" class="btn-icon btn-danger-outline card-del-btn" title="Delete entry"
+              onclick="App.deleteRow(${index})">✕</button>
+          </div>
+
+          <div class="card-task-row">
+            <input type="text" class="mobile-input mobile-task" value="${entry.task || ''}" placeholder="Task description..."
+              onchange="App.updateEntryField(${index}, 'task', this.value)">
+          </div>
+
+          <div class="card-meta-row">
+            <div class="card-badges">
+              ${entry.zohoId ? `<span class="badge badge-zoho">${entry.zohoId}</span>` : ''}
+              ${entry.requirementId ? `<span class="badge badge-req">${entry.requirementId}</span>` : ''}
+              ${entry.requirementTitle ? `<span class="badge-title-text" title="${entry.requirementTitle}">${entry.requirementTitle}</span>` : ''}
+            </div>
+            <div class="card-sub-meta">
+              <label class="mobile-genai-badge ${entry.genAIUsage === 'Yes' ? 'active' : ''}">
+                <input type="checkbox" ${entry.genAIUsage === 'Yes' ? 'checked' : ''} 
+                  onchange="App.updateEntryField(${index}, 'genAIUsage', this.checked ? 'Yes' : 'No')">
+                <span>Gen AI</span>
+              </label>
+              <span class="mobile-date-text">${entry.date || ''}</span>
+            </div>
+          </div>
+        `;
+        cardsContainer.appendChild(card);
+      }
+
+      // 2. Desktop Table View (Displayed on Tablets/Desktop)
+      if (tbody) {
+        const tr = document.createElement("tr");
+        tr.id = `row-${entry.id || index}`;
+
+        tr.innerHTML = `
+          <td>
+            <input type="text" class="table-input" value="${entry.date || ''}" 
+              onchange="App.updateEntryField(${index}, 'date', this.value)" style="width: 100px;">
+          </td>
+          <td>
+            <select class="table-input" onchange="App.updateEntryField(${index}, 'taskType', this.value)">
+              ${taskTypeOptions}
+            </select>
+          </td>
+          <td>
+            <input type="text" class="table-input" value="${entry.task || ''}" placeholder="Task description"
+              onchange="App.updateEntryField(${index}, 'task', this.value)">
+          </td>
+          <td>
+            <input type="number" step="0.25" min="0" class="table-input num" value="${timeVal}" 
+              onchange="App.updateEntryField(${index}, 'timeHours', parseFloat(this.value) || 0)">
+          </td>
+          <td>
+            <input type="text" class="table-input" value="${entry.zohoId || ''}" placeholder="Zoho ID"
+              onchange="App.updateEntryField(${index}, 'zohoId', this.value)" style="width: 85px;">
+          </td>
+          <td>
+            <input type="text" class="table-input" value="${entry.requirementId || ''}" placeholder="Req ID"
+              onchange="App.updateEntryField(${index}, 'requirementId', this.value)" style="width: 100px;">
+          </td>
+          <td>
+            <input type="text" class="table-input" value="${entry.requirementTitle || ''}" placeholder="Requirement Title"
+              onchange="App.updateEntryField(${index}, 'requirementTitle', this.value)">
+          </td>
+          <td>
+            <select class="table-input" onchange="App.updateEntryField(${index}, 'genAIUsage', this.value)" style="width: 70px;">
+              <option value="No" ${entry.genAIUsage === 'No' ? 'selected' : ''}>No</option>
+              <option value="Yes" ${entry.genAIUsage === 'Yes' ? 'selected' : ''}>Yes</option>
+            </select>
+          </td>
+          <td style="text-align: center;">
+            <button type="button" class="btn-icon btn-danger-outline" title="Delete row" 
+              onclick="App.deleteRow(${index})">✕</button>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      }
     });
 
     const finalTotal = Math.round(calculatedTotal * 100) / 100;
