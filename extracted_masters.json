@@ -1,0 +1,237 @@
+{
+  "spreadsheetTitle": "Giriraj Deora - Product Timesheet",
+  "spreadsheetId": "1Z1UCvEUKEiVwqbnhsVFuSBakf0QlpNocZnvcH70wC_c",
+  "taskTypes": [
+    "Client Issue",
+    "Client Meeting",
+    "Client Request",
+    "Client Tasks",
+    "Demo Meeting",
+    "Dev Discussion",
+    "Development Queries",
+    "Documentation Creation v1",
+    "Documentation Creation v1++",
+    "Effort Estimation",
+    "Fun Friday",
+    "Genie Issue",
+    "Genie Meeting Preparation",
+    "Genie Tasks",
+    "ISO Audit",
+    "KT Transfer",
+    "Kick-Off Meeting",
+    "Module learning/Training",
+    "New Project Priority & Discussion",
+    "PMS",
+    "Product Meeting",
+    "Product Meeting Preparation",
+    "Project Analysis",
+    "Project Discussion Meeting",
+    "Project Testing",
+    "QA Queries",
+    "R&D",
+    "Retro Meeting",
+    "Retro Preparation",
+    "Sales Meeting",
+    "Scope Document",
+    "Scrum",
+    "Support/Implementation Meeting",
+    "Timesheet",
+    "UAT Testing",
+    "UI Discussion",
+    "VENDX Tasks",
+    "War Room Meeting",
+    "Weekly Meeting"
+  ],
+  "projects": [
+    {
+      "zohoId": "MV-722",
+      "requirementId": "R26-04-043",
+      "requirementTitle": "RFQ Before PR with Contract (Material)"
+    },
+    {
+      "zohoId": "MV-356",
+      "requirementId": "R26-04-019",
+      "requirementTitle": "Q Plus Tech Upgrade"
+    },
+    {
+      "zohoId": "MV-703",
+      "requirementId": "R26-04-018",
+      "requirementTitle": "OTG PP bags enhancement (Phase 2)"
+    },
+    {
+      "zohoId": "MV-727",
+      "requirementId": "R26-04-002",
+      "requirementTitle": "Auto Deletion of Invoice on ASN Deletion"
+    },
+    {
+      "zohoId": "MV-417",
+      "requirementId": "R26-04-015",
+      "requirementTitle": "Auction Setup Redesign"
+    },
+    {
+      "zohoId": "MV-739",
+      "requirementId": "R26-04-041",
+      "requirementTitle": "Initial Setup of \"What’s New\" Feature in VENDX"
+    },
+    {
+      "zohoId": "MV-706",
+      "requirementId": "R26-04-020",
+      "requirementTitle": "Q Plus Phase - 02 (customize preference)"
+    },
+    {
+      "zohoId": "MV-712",
+      "requirementId": "R26-04-012",
+      "requirementTitle": "RFQ Visibility Control Similarity In Auction & R2A"
+    },
+    {
+      "zohoId": "MV-748",
+      "requirementId": "R26-05-001",
+      "requirementTitle": "RFQ Before PR with Contract (Service)"
+    },
+    {
+      "zohoId": "MV-723",
+      "requirementId": "R26-04-007",
+      "requirementTitle": "PR Creation and Approval Workflow in VENDX"
+    },
+    {
+      "zohoId": "MV-474",
+      "requirementId": "R26-04-008",
+      "requirementTitle": "VENDX Connect"
+    },
+    {
+      "zohoId": "MV-697",
+      "requirementId": "R26-04-011",
+      "requirementTitle": "UAM (User Access Management)"
+    },
+    {
+      "zohoId": "FR1-T179",
+      "requirementId": "R26-05-003",
+      "requirementTitle": "Change Terminology from “Landed Cost” to “Bidding Amount” in Auction Alerts"
+    },
+    {
+      "zohoId": "CRA6-T61",
+      "requirementId": "R26-05-004",
+      "requirementTitle": "Issue in Auto-Extension During Start Price Auction"
+    },
+    {
+      "zohoId": "MV-738",
+      "requirementId": "R26-04-035",
+      "requirementTitle": "Quick DA: Easy Approve"
+    },
+    {
+      "zohoId": "MV-754",
+      "requirementId": "R26-06-007",
+      "requirementTitle": "Dashboard Revamp in Contract Register"
+    },
+    {
+      "zohoId": "MV-688",
+      "requirementId": "R26-04-047",
+      "requirementTitle": "VOB Certificate Expiry"
+    },
+    {
+      "zohoId": "MV-749",
+      "requirementId": "R26-05-006",
+      "requirementTitle": "Security Enhancements – Session Timeout, Global Logout & Column-Level Encryption"
+    },
+    {
+      "zohoId": "MV-443",
+      "requirementId": "R26-06-006",
+      "requirementTitle": "International Vendor Contract"
+    },
+    {
+      "zohoId": "MV-755",
+      "requirementId": "R26-06-005",
+      "requirementTitle": "Auction Module Enhancements – Tolerance Controls, L1 Summary Report, and Vendor IP Tracking"
+    },
+    {
+      "zohoId": "",
+      "requirementId": "AT8-T1146",
+      "requirementTitle": ""
+    },
+    {
+      "zohoId": "MV-714",
+      "requirementId": "R26-04-021",
+      "requirementTitle": "Item code and Name in ASN"
+    },
+    {
+      "zohoId": "MV-637",
+      "requirementId": "R26-04-004",
+      "requirementTitle": "UI Update - Account Dashboard and Appbar"
+    },
+    {
+      "zohoId": "MV-696",
+      "requirementId": "R26-06-004",
+      "requirementTitle": "Multi-Factor Authentication (MFA) in VENDX"
+    },
+    {
+      "zohoId": "MV-757",
+      "requirementId": "R26-06-008",
+      "requirementTitle": "Duplicate Vendor–Plant Alert in Quantity Distribution Screen"
+    },
+    {
+      "zohoId": "MV-777",
+      "requirementId": "R26-05-002",
+      "requirementTitle": "Implementation of One-Time Cylinder Cost for Supplier & Material Combination"
+    },
+    {
+      "zohoId": "MV-763",
+      "requirementId": "R26-06-014",
+      "requirementTitle": "Improving PO Visibility, ASN Controls, and Reporting in OTG"
+    },
+    {
+      "zohoId": "MV-759",
+      "requirementId": "R26-06-011",
+      "requirementTitle": "NFA- Requirement"
+    },
+    {
+      "zohoId": "MV-762",
+      "requirementId": "R26-06-015",
+      "requirementTitle": "NFA Requirement – (SBPL)"
+    },
+    {
+      "zohoId": "FR1-T182",
+      "requirementId": "R26-05-005",
+      "requirementTitle": "Contract Excel Download Option & Pending Approval Dashboard Visibility"
+    },
+    {
+      "zohoId": "MV-656",
+      "requirementId": "R26-04-010",
+      "requirementTitle": "OTG PP Bags Enhancement (Phase 1)"
+    },
+    {
+      "zohoId": "MV-773",
+      "requirementId": "R26-07-003",
+      "requirementTitle": "Capture Auction Conducted Status with Mandatory Auction Result PDF Upload in NFA"
+    },
+    {
+      "zohoId": "MV-770",
+      "requirementId": "R26-07-006",
+      "requirementTitle": "Enable Line Item-Level Bid Cancellation for Buyers in Auction"
+    },
+    {
+      "zohoId": "MV-785",
+      "requirementId": "R26-07-023",
+      "requirementTitle": "Grouping of Multiple Contract RFQs/QCSs into a Single GQCS"
+    },
+    {
+      "zohoId": "",
+      "requirementId": "R26-07-027",
+      "requirementTitle": "Material Master Request & Approval"
+    },
+    {
+      "zohoId": "",
+      "requirementId": "R26-08-004",
+      "requirementTitle": "RFQ Field Visibility"
+    },
+    {
+      "zohoId": "MV-808",
+      "requirementId": "R26-08-012",
+      "requirementTitle": "Material & Service in the Same Account"
+    },
+    {
+      "zohoId": "",
+      "requirementId": "ARE Demo to Sales Team",
+      "requirementTitle": ""
+    }
+  ]
+}
