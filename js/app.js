@@ -4,6 +4,36 @@
  * =========================================================================
  */
 
+/**
+ * Apple Design Multimodal Haptics (Physical Tactile Feedback)
+ */
+const Haptics = {
+  // Light 12ms tap for clicks, buttons, steppers, and pill toggles
+  tap() {
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      try { navigator.vibrate(12); } catch (_) {}
+    }
+  },
+  // Success double pulse for sheet writes and successful analysis
+  success() {
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      try { navigator.vibrate([15, 45, 20]); } catch (_) {}
+    }
+  },
+  // Warning pulse for duplicates or clarifications
+  warning() {
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      try { navigator.vibrate([25, 40, 25]); } catch (_) {}
+    }
+  },
+  // Error vibration
+  error() {
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      try { navigator.vibrate([45, 60, 45]); } catch (_) {}
+    }
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   App.init();
 });
@@ -98,6 +128,7 @@ const App = {
     const textInput = document.getElementById("input-work-text");
     if (micBtn) {
       micBtn.addEventListener("click", () => {
+        Haptics.tap();
         if (this.voiceService) {
           this.voiceService.toggle(textInput ? textInput.value : "");
         } else {
@@ -109,13 +140,17 @@ const App = {
     // Analyze Work button
     const analyzeBtn = document.getElementById("btn-analyze");
     if (analyzeBtn) {
-      analyzeBtn.addEventListener("click", () => this.handleAnalyze());
+      analyzeBtn.addEventListener("click", () => {
+        Haptics.tap();
+        this.handleAnalyze();
+      });
     }
 
     // Clear Text button
     const clearBtn = document.getElementById("btn-clear-input");
     if (clearBtn && textInput) {
       clearBtn.addEventListener("click", () => {
+        Haptics.tap();
         textInput.value = "";
         if (this.voiceService) this.voiceService.reset();
         textInput.focus();
@@ -125,33 +160,51 @@ const App = {
     // Confirmation Actions
     const addTimesheetBtn = document.getElementById("btn-confirm-add");
     if (addTimesheetBtn) {
-      addTimesheetBtn.addEventListener("click", () => this.submitEntriesToSheets());
+      addTimesheetBtn.addEventListener("click", () => {
+        Haptics.tap();
+        this.submitEntriesToSheets();
+      });
     }
 
     const cancelPreviewBtn = document.getElementById("btn-cancel-preview");
     if (cancelPreviewBtn) {
-      cancelPreviewBtn.addEventListener("click", () => this.cancelPreview());
+      cancelPreviewBtn.addEventListener("click", () => {
+        Haptics.tap();
+        this.cancelPreview();
+      });
     }
 
     const addRowBtn = document.getElementById("btn-add-row");
     if (addRowBtn) {
-      addRowBtn.addEventListener("click", () => this.addNewRow());
+      addRowBtn.addEventListener("click", () => {
+        Haptics.tap();
+        this.addNewRow();
+      });
     }
 
     // Today's entries modal
     const viewTodayBtn = document.getElementById("btn-view-today");
     const closeTodayBtn = document.getElementById("btn-close-today-modal");
+    const modalToday = document.getElementById("modal-today");
     if (viewTodayBtn) {
       viewTodayBtn.addEventListener("click", () => this.openTodayModal());
     }
     if (closeTodayBtn) {
       closeTodayBtn.addEventListener("click", () => this.closeTodayModal());
     }
+    if (modalToday) {
+      modalToday.addEventListener("click", (e) => {
+        if (e.target === modalToday) {
+          this.closeTodayModal();
+        }
+      });
+    }
 
     // Done button on summary card
     const doneSummaryBtn = document.getElementById("btn-done-summary");
     if (doneSummaryBtn) {
       doneSummaryBtn.addEventListener("click", () => {
+        Haptics.tap();
         const summaryCard = document.getElementById("daily-summary-card");
         if (summaryCard) summaryCard.style.display = "none";
       });
@@ -161,6 +214,7 @@ const App = {
     const themeBtn = document.getElementById("btn-toggle-theme");
     if (themeBtn) {
       themeBtn.addEventListener("click", () => {
+        Haptics.tap();
         const nextTheme = (this.config.theme === "dark") ? "light" : "dark";
         this.config.theme = nextTheme;
         window.ConfigManager.save(this.config);
@@ -218,6 +272,7 @@ const App = {
       pill.textContent = `⚡ ${s.label}`;
       pill.title = s.text;
       pill.addEventListener("click", () => {
+        Haptics.tap();
         const input = document.getElementById("input-work-text");
         if (input) {
           input.value = s.text;
@@ -252,15 +307,18 @@ const App = {
       this.setProcessing(false);
 
       if (result.needsClarification) {
+        Haptics.warning();
         this.showClarification(result.clarificationQuestion);
         return;
       }
 
       if (!result.entries || result.entries.length === 0) {
+        Haptics.warning();
         this.showClarification("I couldn't identify any specific work entries. Could you tell me the project name and time spent?");
         return;
       }
 
+      Haptics.success();
       this.currentEntries = result.entries;
       this.renderPreviewTable(this.currentEntries, result.totalHours);
 
@@ -273,6 +331,7 @@ const App = {
 
     } catch (err) {
       this.setProcessing(false);
+      Haptics.error();
       console.error("Analysis failed:", err);
       this.showToast(err.message || "Failed to analyze your work.", "error");
     }
@@ -445,6 +504,7 @@ const App = {
    * Delete row from preview table
    */
   deleteRow(index) {
+    Haptics.tap();
     this.currentEntries.splice(index, 1);
     if (this.currentEntries.length === 0) {
       this.cancelPreview();
@@ -457,6 +517,7 @@ const App = {
    * Add a new blank row to the preview table
    */
   addNewRow() {
+    Haptics.tap();
     const defaultDate = window.Validation.parseNaturalDate("today", this.config.dateFormat);
     this.currentEntries.push({
       id: "entry_" + Date.now(),
@@ -506,6 +567,7 @@ const App = {
       for (const entry of this.currentEntries) {
         const dupCheck = window.Validation.checkDuplicate(entry, this.existingEntries);
         if (dupCheck.isDuplicate) {
+          Haptics.warning();
           const proceed = confirm(
             `⚠️ Duplicate Warning:\nA similar entry (${dupCheck.reason}) already exists for ${entry.date}.\n\nDo you want to add this entry anyway?`
           );
@@ -538,6 +600,7 @@ const App = {
       }
 
       this.setProcessing(false);
+      Haptics.success();
 
       // Add to local cache
       this.existingEntries.push(...this.currentEntries);
@@ -558,6 +621,7 @@ const App = {
 
     } catch (err) {
       this.setProcessing(false);
+      Haptics.error();
       console.error("Submission error:", err);
       this.showToast(
         "Unable to connect to your timesheet right now. Your entries have NOT been added. Please try again.",
@@ -791,6 +855,7 @@ const App = {
    * View Today's Entries Modal
    */
   openTodayModal() {
+    Haptics.tap();
     const modal = document.getElementById("modal-today");
     const container = document.getElementById("today-entries-container");
     if (!modal || !container) return;
@@ -841,11 +906,20 @@ const App = {
     }
 
     modal.style.display = "flex";
+    requestAnimationFrame(() => {
+      modal.classList.add("active");
+    });
   },
 
   closeTodayModal() {
+    Haptics.tap();
     const modal = document.getElementById("modal-today");
-    if (modal) modal.style.display = "none";
+    if (modal) {
+      modal.classList.remove("active");
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 250);
+    }
   }
 };
 
